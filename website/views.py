@@ -1,14 +1,11 @@
 from flask import Blueprint, render_template, request, flash, jsonify
-import json
 from os import path
 from flask import Flask, request, jsonify
 
 import website.util as util
-import pickle
-import json
 import numpy as np
 import warnings
-
+from website.util import load_saved_artifacts
 
 views = Blueprint('views', __name__)
 
@@ -70,10 +67,19 @@ def get_location_names():
     response = jsonify({"locations": util.get_location_names()}) #util.get_location_names()}
     response.headers.add("Access-Control-Allow-Origin", "*")
     print(response)
+    new_res = load_saved_artifacts()
+    #return response
+
+    return render_template("app.html", response=new_res)
+
+@views.route('/get_location_names', methods=['GET', 'POST'])
+def get_location_names_1():
+    response = jsonify({"locations": util.get_location_names()}) #util.get_location_names()}
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    print(response)
     #return response
 
     return render_template("app.html", response=response)
-
 
 @views.route('/predict_home_price', methods=['POST'])
 def predict_home_price():

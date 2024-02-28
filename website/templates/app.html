@@ -181,13 +181,28 @@ body, html {
 	</div>
 		<h2>Location</h2>
 	<div>
-  <select class="location" name="" id="uiLocations">
-    <option value="" disabled="disabled" selected="selected">Choose a Location</option>
-		<option>Electronic City</option>
-        <option>Rajaji Nagar</option>
-  </select>
+		<select class="location" name="" id="uiLocations">
+			<option value="" disabled="disabled" selected="selected">Choose a Location</option>
+		</select>
 </div>
 	<button class="submit" onclick="onClickedEstimatePrice()" type="button">Estimate Price</button>
 	<div id="uiEstimatedPrice" class="result">	<h2></h2> </div>
+
+	<script>
+		var locations = {{ response|tojson }};
+
+	   var selectElement = document.getElementById('uiLocations');
+   
+	   locations.forEach(function(location) {
+		   var optionElement = document.createElement('option');
+		   optionElement.textContent = location;
+   
+		   selectElement.appendChild(optionElement);
+	   });
+   
+   </script>
+
+
+
 </body>
 </html>

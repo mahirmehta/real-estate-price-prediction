@@ -24,6 +24,7 @@ def load_saved_artifacts():
         with open('C:/Users/farde/Downloads/Flask-Web-App-Tutorial-main/Flask-Web-App-Tutorial-main/website/artifacts/banglore_home_prices_model.pickle', 'rb') as f:
             __model = pickle.load(f)
     print("loading saved artifacts...done")
+    return __locations
 
 def get_location_names():
     return __locations
@@ -32,7 +33,7 @@ def get_data_columns():
     return __data_columns
 
 def get_estimated_price(location,sqft,bhk,bath):
-    load_saved_artifacts()
+    #load_saved_artifacts()
     try:
         loc_index = __data_columns.index(location.lower())
     except:
