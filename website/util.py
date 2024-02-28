@@ -14,14 +14,14 @@ def load_saved_artifacts():
     global  __data_columns
     global __locations
 
-    with open("C:/Users/farde/Downloads/Flask-Web-App-Tutorial-main/Flask-Web-App-Tutorial-main/website/artifacts/columns.json", "r") as f:#./artifacts/columns.json"
+    with open("C:/Users/mahir/OneDrive/Documents/GitHub/real-estate-price-prediction/website/artifacts/columns.json", "r") as f:#./artifacts/columns.json"
         __data_columns = json.load(f)['data_columns']
         #print("@@@@@@@@@@@@@@@@@@@@@@@@@@", __data_columns)
         __locations = __data_columns[3:]  # first 3 columns are sqft, bath, bhk
 
     global __model
     if __model is None:
-        with open('C:/Users/farde/Downloads/Flask-Web-App-Tutorial-main/Flask-Web-App-Tutorial-main/website/artifacts/banglore_home_prices_model.pickle', 'rb') as f:
+        with open('C:/Users/mahir/OneDrive/Documents/GitHub/real-estate-price-prediction/website/artifacts/banglore_home_prices_model.pickle', 'rb') as f:
             __model = pickle.load(f)
     print("loading saved artifacts...done")
     return __locations
